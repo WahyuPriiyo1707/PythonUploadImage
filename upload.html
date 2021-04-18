@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Upload</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+ <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+
+<form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+    <div id="wrapper">
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="container">
+                    <div id="identitycard" style="margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                <div class="panel-title">Pilih file untuk di UPLOAD</div>
+                            </div>
+</form>
+<div class="row">
+    <p style="padding: 8px;" class="text-center">File untuk upload png, jpg</p>
+    <br>
+</div>
+<center>
+<input  id="file-picker" type="file" name="file" accept="image/*" multiple>
+<div id="msg"></div>
+</center>
+<br><br>
+<script>
+
+    $("#file-picker").change(function(){
+
+        var input = document.getElementById('file-picker');
+
+        for (var i=0; i<input.files.length; i++)
+        {
+            var ext= input.files[i].name.substring(input.files[i].name.lastIndexOf('.')+1).toLowerCase()
+
+            if ((ext == 'jpg') || (ext == 'png'))
+            {
+                $("#msg").text("Files bisa di simpan")
+            }
+            else
+            {
+                $("#msg").text("Files tidak mendukung, Pilih Format .jpg atau .png")
+                document.getElementById("file-picker").value ="";
+            }
+
+        }
+
+
+    } );
+
+
+</script>
+<input type="submit" value="Upload" class="btn btn-lg btn-block btn-success" style="border-radius: 50px;background-color:hover #35832f">
+</div>
+        </div>
+    </form>
+</div>
+</body>
+
+</html>
